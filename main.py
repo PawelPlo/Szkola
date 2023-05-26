@@ -26,15 +26,24 @@ class Nauczyciel:
         lista_nauczycieli[nazwisko_nauczyciela] = {"imie": imie_nauczyciela, "przedmiot": przedmiot}
 
 class Wychowawca:
-    def __init__(self):
-        pass
+    def __init__(self, nazwisko_wychowawcy, imie_wychowawcy, nazwa_klasy):
+        self.nazwisko_wychowawcy = nazwisko_wychowawcy
+        self.imie_wychowawcy = imie_wychowawcy
+        self.nazwa_klasy = nazwa_klasy
+
+    def dodawanie_wychowawcy_do_listy(self):
+        nazwisko_wychowawcy = input("Podaj nazwisko wychowawcy:   ")
+        imie_wychowawcy = input("Podaj imie wychowawcy:    ")
+        nazwa_klasy = input("Podaj nazwę klasy, którą prowadzi wychowawca:    ")
+        lista_wychowawcow[nazwisko_wychowawcy] = {"imie": imie_wychowawcy, "nazwa_klasy": nazwa_klasy}
+
 class Klasa:
     def __init__(self):
         pass
 
 lista_uczniow = dict()
 lista_nauczycieli = dict()
-# lista_wychowawcow = [{"imie": "Ryszard", "nazwisko": "Pawlak", "nazwa_klasy": "1C"}]
+lista_wychowawcow = dict()
 # lista_klas = ["1A", "1B", "2A", "2B", "3A", "3C", "4A", "4B"]
 
 nowy_uczen = Uczen("nazwisko_ucznia", "imie_ucznia", "nazwa_klasy", "lekcje")
@@ -43,8 +52,12 @@ nowy_uczen.dodawanie_ucznia_do_listy()
 nowy_nauczyciel = Nauczyciel("nazwisko_nauczyciela", "imie_nauczyciela", "przedmiot")
 nowy_nauczyciel.dodawanie_nauczyciela_do_listy()
 
+nowy_wychowawca = Wychowawca("nazwisko_wychowawcy", "imie_wychowawcy", "nazwa_klasy")
+nowy_wychowawca.dodawanie_wychowawcy_do_listy()
+
 print(lista_uczniow)
 print(lista_nauczycieli)
+print(lista_wychowawcow)
 
 while True:
     pass
