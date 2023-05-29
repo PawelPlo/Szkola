@@ -1,15 +1,8 @@
-numery_klas = ["1A", "1B", "2A", "2B", "3A", "3B", "4A", "4B"]
+numery_klas = ["1a", "1b", "2a", "2b", "3a", "3b", "4a", "4b"]
 class Uczen:
     def __init__(self, imie_i_nazwisko, nazwa_klasy):
         self.imie_i_nazwisko = imie_i_nazwisko
         self.nazwa_klasy = nazwa_klasy
-
-    # def wyszukiwanie_klasy_ucznia(self):
-    #     imie = input("Podaj imie ucznia:   ")
-    #     nazwisko = input("Podaj nazwisko ucznia:   ")
-    #     imie_i_nazwisko = imie + " " + nazwisko
-    #     if imie_i_nazwisko in lista_uczniow:
-    #         print("znalzlem")
 
 class Nauczyciel:
     def __init__(self, imie_i_nazwisko, nazwa_klasy, przedmiot):
@@ -17,68 +10,50 @@ class Nauczyciel:
         self.nazwa_klasy = nazwa_klasy
         self.przedmiot = przedmiot
 
-    # def dodawanie_nauczyciela_do_listy(self):
-    #     imie = input("Podaj imie nauczyciela:   ")
-    #     nazwisko = input("Podaj nazwisko nauczyciela:   ")
-    #     imie_i_nazwisko = imie + " " + nazwisko
-    #     przedmiot = input("Podaj nazwe przedmiotu nauczanego przez nauczyciela:   ")
-    #     nazwa_klasy = input("Podaj nazwe klasy:   ")
-    #     nazwa_klasy = nazwa_klasy.capitalize()
-    #     if nazwa_klasy in lista_klas:
-    #         lista_nauczycieli[nazwa_klasy] += {imie_i_nazwisko, przedmiot}
-
 class Wychowawca:
     def __init__(self, imie_i_nazwisko, nazwa_klasy):
         self.imie_i_nazwisko = imie_i_nazwisko
         self.nazwa_klasy = nazwa_klasy
 
-    # def dodawanie_wychowawcy_do_listy(self):
-    #     imie = input("Podaj imie wychowawcy:   ")
-    #     nazwisko = input("Podaj nazwisko wychowawcy:   ")
-    #     imie_i_nazwisko = imie + " " + nazwisko
-    #     nazwa_klasy = input("Podaj nazwe klasy:   ")
-    #     nazwa_klasy = nazwa_klasy.capitalize()
-    #     if nazwa_klasy in lista_klas:
-    #         lista_wychowawcow[nazwa_klasy].append(imie_i_nazwisko)
 
 """tu dodajemy pary 'uczen - nazwa klasy"""
 lista_uczniow = dict()
 
 """do poszcegolnych klas dodajemy uczniów"""
 lista_klas = {
-    '1A':  [],
-    '1B':  [],
-    '2A':  [],
-    '2B':  [],
-    '3A':  [],
-    '3B':  [],
-    '4A':  [],
-    '4B':  []
+    '1a':  [],
+    '1b':  [],
+    '2a':  [],
+    '2b':  [],
+    '3a':  [],
+    '3b':  [],
+    '4a':  [],
+    '4b':  []
 }
 """do słowników klas dodajemy pary 'nauczyciel - przedmiot'"""
 lista_nauczycieli = {
-    '1A': dict(),
-    '1B': dict(),
-    '2A': dict(),
-    '2B': dict(),
-    '3A': dict(),
-    '3B': dict(),
-    '4A': dict(),
-    '4B': dict()
+    '1a': dict(),
+    '1b': dict(),
+    '2a': dict(),
+    '2b': dict(),
+    '3a': dict(),
+    '3b': dict(),
+    '4a': dict(),
+    '4b': dict()
 }
 """tutaj dodajemu poszczegolnych nauczycieli i ich klasy"""
 klasy_nauczycieli = dict()
 
 """do poszczegolnych klas dodajemy wychowawców klas"""
 lista_wychowawcow = {
-    '1A':  [],
-    '1B':  [],
-    '2A':  [],
-    '2B':  [],
-    '3A':  [],
-    '3B':  [],
-    '4A':  [],
-    '4B':  []
+    '1a':  [],
+    '1b':  [],
+    '2a':  [],
+    '2b':  [],
+    '3a':  [],
+    '3b':  [],
+    '4a':  [],
+    '4b':  []
 }
 """tutaj dodajemy pary wychowawca - klasa"""
 
@@ -99,32 +74,40 @@ Powrot do głównego menu - q\n\n""")
 
         wybor_1_1 = input("Twoj wybor:   \n")
         if wybor_1_1 == "1":
-            imie = input("Podaj imie ucznia:   ")
-            nazwisko = input("Podaj nazwisko ucznia:   ")
+            imie = input("Podaj imie ucznia:   ").strip()
+            imie = imie.lower().capitalize()
+            nazwisko = input("Podaj nazwisko ucznia:   ").strip()
+            nazwisko = nazwisko.lower().capitalize()
             imie_i_nazwisko = imie + " " + nazwisko
-            nazwa_klasy = input("Podaj nazwe klasy:   ")
+            nazwa_klasy = input("Podaj nazwe klasy:   ").strip()
+            nazwa_klasy = nazwa_klasy.lower()
             nowy_uczen = Uczen(imie_i_nazwisko=imie_i_nazwisko, nazwa_klasy=nazwa_klasy)
             #if nazwa_klasy in lista_klas:
             lista_klas[nazwa_klasy].append(imie_i_nazwisko)
             lista_uczniow[imie_i_nazwisko] = nazwa_klasy
             continue
         if wybor_1_1 == "2":
-            imie = input("Podaj imie nauczyciela:   ")
-            nazwisko = input("Podaj nazwisko nauczyciela:   ")
+            imie = input("Podaj imie nauczyciela:   ").strip()
+            imie = imie.lower().capitalize()
+            nazwisko = input("Podaj nazwisko nauczyciela:   ").strip()
+            nazwisko = nazwisko.lower().capitalize()
             imie_i_nazwisko = imie + " " + nazwisko
             przedmiot = input("Podaj nazwe przedmiotu nauczanego przez nauczyciela:   ")
-            nazwa_klasy = input("Podaj nazwe klasy:   ")
-            nowy_nauczyciel = Nauczyciel(imie_i_nazwisko=imie_i_nazwisko, nazwa_klasy=nazwa_klasy, przedmiot=przedmiot)
-            #if nazwa_klasy in lista_klas:
+            nazwa_klasy = input("Podaj nazwy klas, w których uczy nauczyciel (max 8):   ").strip()
+            nazwa_klasy = nazwa_klasy.lower()
             lista_nauczycieli[nazwa_klasy][imie_i_nazwisko] = przedmiot
             klasy_nauczycieli[imie_i_nazwisko] = nazwa_klasy
-            print(lista_nauczycieli)
+            nowy_nauczyciel = Nauczyciel(imie_i_nazwisko=imie_i_nazwisko, nazwa_klasy=nazwa_klasy, przedmiot=przedmiot)
+            for _ in range (7):
+                nazwa_klasy=input()
+                klasy_nauczycieli[imie_i_nazwisko] += nazwa_klasy
             continue
         if wybor_1_1 == "3":
-            imie = input("Podaj imie wychowawcy:   ")
-            nazwisko = input("Podaj nazwisko wychowawcy:   ")
+            imie = input("Podaj imie wychowawcy:   ").strip()
+            imie = imie.lower().capitalize()
+            nazwisko = input("Podaj nazwisko wychowawcy:   ").strip()
+            nazwisko = nazwisko.lower().capitalize()
             imie_i_nazwisko = imie + " " + nazwisko
-            nazwa_klasy = input("Podaj nazwe klasy:   ")
             nowy_wychowawca = Wychowawca(imie_i_nazwisko=imie_i_nazwisko, nazwa_klasy=nazwa_klasy)
             #if nazwa_klasy in lista_klas:
             lista_wychowawcow[nazwa_klasy].append(imie_i_nazwisko)
@@ -148,22 +131,28 @@ Powrot do głównego menu - q\n\n""")
             print("Wychowawca:{}".format( lista_wychowawcow[nazwa_klasy]))
             continue
         if wybor_1_2 == "2":
-            imie = input("Podaj imie ucznia:   ")
-            nazwisko = input("Podaj nazwisko ucznia:   ")
+            imie = input("Podaj imie ucznia:   ").strip()
+            imie = imie.lower().capitalize()
+            nazwisko = input("Podaj nazwisko ucznia:   ").strip()
+            nazwisko = nazwisko.lower().capitalize()
             imie_i_nazwisko = imie + " " + nazwisko
             nazwa_szukanej_klasy = lista_uczniow[imie_i_nazwisko]
             print(lista_nauczycieli[nazwa_szukanej_klasy])
             continue
         if wybor_1_2 == "3":
-            imie = input("Podaj imie nauczyciela:   ")
-            nazwisko = input("Podaj nazwisko nauczyciela:   ")
+            imie = input("Podaj imie nauczyciela:   ").strip()
+            imie = imie.lower().capitalize()
+            nazwisko = input("Podaj nazwisko nauczyciela:   ").strip()
+            nazwisko = nazwisko.lower().capitalize()
             imie_i_nazwisko = imie + " " + nazwisko
             szukany_nauczyciel = klasy_nauczycieli[imie_i_nazwisko]
             print(szukany_nauczyciel)
             continue
         if wybor_1_2 == "4":
-            imie = input("Podaj imie wychowawcy:   ")
-            nazwisko = input("Podaj nazwisko wychowawcy:   ")
+            imie = input("Podaj imie wychowawcy:   ").strip()
+            imie = imie.lower().capitalize()
+            nazwisko = input("Podaj nazwisko wychowawcy:   ").strip()
+            nazwisko = nazwisko.lower().capitalize()
             imie_i_nazwisko = imie + " " + nazwisko
             szukana_klasa = klasa_wychowawcy[imie_i_nazwisko]
             print(lista_klas[szukana_klasa])
