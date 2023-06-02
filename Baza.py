@@ -22,9 +22,9 @@ class Wychowawca:
         return f"Wychowawca: {self.imie_i_nazwisko} // Prowadzona klasa: {self.nazwa_klasy}"
 
 def wyszukiwanie_wychowawcy(nazwa_klasy):
-    return nazwa_klasy.Wychowawca(imie_i_nazwisko)
-def wyszukiwanie_uczniow_klasy (nazwa_klasy):
-    return nazwa_klasy.Uczen(imie_i_nazwisko)
+    return nazwa_klasy.imie_i_nazwisko
+def wyszukiwanie_uczniow_klasy(nazwa_klasy):
+    return nazwa_klasy.imie_i_nazwisko
 def wpisywanie_imienia_i_nazwiska ():
     imie = input("Podaj imie:   ").strip()
     imie = imie.lower().capitalize()
@@ -33,8 +33,8 @@ def wpisywanie_imienia_i_nazwiska ():
     imie_i_nazwisko = imie + " " + nazwisko
     return (imie_i_nazwisko)
 def wyszukiwanie_informacji_o_uczniu (imie_i_nazwisko):
-    return imie_i_nazwisko.Uczen(nazwa_klasy)
-    return nazwa_klasy.Nauczyciel(f"Nauczyciel:{self.imie_i_nazwisko} // przedmiot: {self.przedmiot}")
+    return imie_i_nazwisko.nazwa_klasy
+    return nazwa_klasy.imie_i_nazwisko, przedmiot
 
 uczniowie = []
 nauczyciele = []
@@ -42,7 +42,7 @@ wychowawcy = []
 numery_klas = ["1a", "1b", "2a", "2b", "3a", "3b", "4a", "4b"]
 
 while True:
-    print("""\n\nBAZA SZKOLNA\n
+    print("""\n\n -----------BAZA SZKOLNA ------------\n
 Wpisywanie danych - wpisz: 1
 Wyświetlanie danych - wpisz: 2
 Koniec - wpisz: 3\n\n""")
@@ -50,7 +50,7 @@ Koniec - wpisz: 3\n\n""")
 
     if wybor_1 == "1":
         while True:
-            print("""\nWPISYWANIE DANYCH\n
+            print("""\n------------- WPISYWANIE DANYCH ------------\n
 Uczeń - wpisz: 1
 Nauczyciel - wpisz: 2
 Wychowawca - wpisz: 3
@@ -78,7 +78,6 @@ Powrot do głównego menu - wpisz: q\n\n""")
                         else:
                             nowy_uczen = Uczen(imie_i_nazwisko=imie_i_nazwisko, nazwa_klasy=nazwa_klasy)
                             uczniowie.append(nowy_uczen)
-                            print(uczniowie[0])
                             break
             if wybor_1_1 == "2":
                 while True:
@@ -128,7 +127,6 @@ Jeśli chcesz skończyć - wpisz: Q""")
                             przedmiot = input("Podaj nazwe przedmiotu nauczanego przez nauczyciela:   ")
                             nowy_nauczyciel = Nauczyciel(imie_i_nazwisko=imie_i_nazwisko, nazwa_klasy=wpisane_klasy, przedmiot=przedmiot)
                             nauczyciele.append(nowy_nauczyciel)
-                            print(nauczyciele[0])
                             break
             if wybor_1_1 == "3":
                 print("Wpisz dane wychowawcy\n")
@@ -149,13 +147,13 @@ Jeśli chcesz skończyć - wpisz: Q""")
                     else:
                         nowy_wychowawca = Wychowawca(imie_i_nazwisko=imie_i_nazwisko, nazwa_klasy=nazwa_klasy)
                         wychowawcy.append(nowy_wychowawca)
-                        print(wychowawcy[0])
                         break
             if wybor_1_1 == "q":
                 break
     if wybor_1 == "2":
         while True:
-            print("""\n\nWyszukaj dane o klasie - wpisz: 1
+            print("""\n\n--------- WYSZUKIWANIE DANYCH -----------
+Wyszukaj dane o klasie - wpisz: 1
 Wyszukaj dane o uczniu - wpisz: 2
 Wyszukaj dane o nauczycielu - wpisz: 3
 Wyszukaj dane o wychowawcy - wpisz: 4
@@ -165,15 +163,19 @@ Powrot do głównego menu - wpisz: q\n\n""")
             wybor_1_2 = wybor_1_2.lower()
             if wybor_1_2 == "1":
                 while True:
-                    nazwa_klasy = input("Wpisz klase:   ")
-                    if nazwa_klasy not in numery_klas:
+                    szukana_klasa = input("Wpisz klase:   \n\n")
+                    if szukana_klasa not in numery_klas:
                         print("Nie ma takiej klasy! Spróbuj jeszcze raz.")
                         continue
                     else:
-                        for nazwa_klasy in wychowawcy:
-                            print(wyszukiwanie_wychowawcy(nazwa_klasy))
-                        for nazwa_klasy in uczniowie:
-                            print(wyszukiwanie_uczniow_klasy(nazwa_klasy))
+                        for prowadzacy in wychowawcy:
+                            if prowadzacy.nazwa_klasy == szukana_klasa:
+                                print(f"""Klasa {szukana_klasa}:,
+Wychowawca: {prowadzacy.imie_i_nazwisko}""")
+                        print("Uczniowie:")
+                        for dzieci in uczniowie:
+                            if dzieci.nazwa_klasy == szukana_klasa:
+                                print(dzieci.imie_i_nazwisko)
                         break
             if wybor_1_2 == "2":
                 print("Podaj dane ucznia")
@@ -206,5 +208,11 @@ Uczniowie: {}\n""".format(imie_i_nazwisko, szukana_klasa, lista_klas[szukana_kla
                         break
             if wybor_1_2 == "q":
                 break
+            else:
+                print("Wybrałeś złą opcję! Spróbuj raz jeszcze.")
+                continue
     if wybor_1 == "3":
         break
+    else:
+        print("Wybrałeś złą opcję! Spróbuj raz jeszcze.")
+        continue
